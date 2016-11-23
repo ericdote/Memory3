@@ -1,19 +1,14 @@
 package com.example.eric.memory.controllers;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eric.memory.R;
 import com.example.eric.memory.model.Partida;
-
-/**
- * Created by Eric on 23/11/2016.
- */
 
 public class Joc extends AppCompatActivity {
 
