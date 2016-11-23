@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.eric.memory.R;
 import com.example.eric.memory.model.Partida;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

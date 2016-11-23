@@ -9,7 +9,7 @@
 
 
     <Button
-        android:text="Comenzar"
+        android:text="@string/comenzar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnEmpezar"
@@ -23,7 +23,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
         <RadioButton
-            android:text="Facil"
+            android:text="@string/facil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="129dp"
@@ -33,7 +33,7 @@
             android:checked="true"/>
 
         <RadioButton
-            android:text="Medio"
+            android:text="@string/medio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rbFacil"
@@ -41,7 +41,7 @@
             android:id="@+id/rbMedio" />
 
         <RadioButton
-            android:text="Dificil"
+            android:text="@string/dificil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rbMedio"
