@@ -28,30 +28,25 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        //Solo procesamos clicks si el listener es activo
+
         Partida partida = tauler.getPartida();
 
         if (listenerActive) {
-            //view.setVisibility(View.INVISIBLE);
-
             carta = tauler.getPartida().getLlistaCartes().get(position);
             carta.girar();
-
             tauler.refrescarTablero();
-
             listaCartasFront = partida.mostrarCartasFront();
-
+            //Mira ambas cartas y en caso de no ser iguales hace un delay de 2 segundos para poder ver la segunda
             if (listaCartasFront.size() == 2 && listaCartasFront.get(0).getFrontImage() != listaCartasFront.get(1).getFrontImage()) {
                 this.listenerActive = false;
-
                 Handler delay = new Handler();
                 delay.postDelayed(this, 2000);
-
+            //Si ambas cartas son iguales las pone como FIXED
             } else if (listaCartasFront.size() == 2) {
                 listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
                 listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
-                if(comprobarFin() && (listaCartasFront.size() == partida.getNumeroCartes())){
-                    tauler.acabarPartida();
+                if(comprobarFin()){
+                    tauler.acabarPartida(comprovar);
                 }
             }
         }

@@ -35,6 +35,9 @@ public class Carta {
         this.estat = estat;
     }
 
+    /**
+     * Metodo que en funcion del estado de la carta la pondra de una forma u otra
+     */
     public void girar() {
         //TODO canviar logicamente el estado de la carta
 

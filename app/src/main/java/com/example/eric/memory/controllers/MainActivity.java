@@ -29,7 +29,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCallActivity.setOnClickListener(this);
     }
 
-
+    /**
+     * Cuando reciba un onClick con id btnEmpezar crea un intent para lanzar la activity Joc
+     * Antes de lanzar la activity mira que RadioButton ha sido seleccionado (dificultad) para enviar mas o menos cartas
+     * Al lanzar la activity finaliza el esta.
+     * @param v
+     */
     @Override
     public void onClick(View v) {
 
@@ -62,8 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             startActivity(intent);
             if (salir) {
-                Toast.makeText(this, "Muere el Main", Toast.LENGTH_SHORT).show();
-
                 finish();
             }
         }

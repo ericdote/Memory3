@@ -47,10 +47,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView.setLayoutParams(new GridView.LayoutParams(280,320));
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setPadding(8, 8, 8, 8);
-
-            /*TODO hay que visualizar la imagen de la carta correspondiente del ArrayList*/
             imageView.setImageResource(partida.getLlistaCartes().get(position).getActive());
-            //mostrar las cartas boca abajo  -->  imageView.setImageResource(R.drawable.back);
         } else {
             imageView = (ImageView) convertView;
         }
