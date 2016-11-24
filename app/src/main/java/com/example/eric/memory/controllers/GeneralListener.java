@@ -41,16 +41,20 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
                 this.listenerActive = false;
                 Handler delay = new Handler();
                 delay.postDelayed(this, 2000);
-            //Si ambas cartas son iguales las pone como FIXED
+                //Si ambas cartas son iguales las pone como FIXED
             } else if (listaCartasFront.size() == 2) {
                 listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
                 listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
-                if(comprobarFin()){
-                    tauler.acabarPartida(comprovar);
+                listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
+                listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
+                if (comprobarFin() && (listaCartasFront.size() == partida.getNumeroCartes())) {
+                    tauler.acabarPartida();
+                    tauler.acabarPartida();
                 }
             }
         }
     }
+
 
     @Override
     public void run() {
@@ -61,7 +65,7 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     }
 
 
-   public boolean comprobarFin() {
+    public boolean comprobarFin() {
         comprovar = true;
         for (Carta carta : listaCartasFront) {
             if (carta.getEstat() != Carta.Estat.FIXED) {

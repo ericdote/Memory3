@@ -77,25 +77,22 @@ public class Joc extends AppCompatActivity {
      * Metodo que terminada la partida, en cas de guanyar termina o en cas de acabar tot el temps
      * En ambos casos treura un alertDialog preguntant si volen tornar a jugar o no.
      */
-    public void acabarPartida(boolean timeOff) {
-
-        if (timeOff) {
-            AlertDialog.Builder ad = new AlertDialog.Builder(this);
-            ad.setTitle("Se acabo el tiempo!");
-            ad.setMessage("¿ Quieres volver a probar ?");
-            ad.setCancelable(false);
-            ad.setPositiveButton("Volver al menu", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialogo1, int id) {
-                    aceptar();
-                }
-            });
-            ad.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialogo1, int id) {
-                    cancelar();
-                }
-            });
-            ad.show();
-        }
+    public void acabarPartida() {
+        AlertDialog.Builder ad = new AlertDialog.Builder(this);
+        ad.setTitle("Se acabo el tiempo!");
+        ad.setMessage("¿ Quieres volver a probar ?");
+        ad.setCancelable(false);
+        ad.setPositiveButton("Volver al menu", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                aceptar();
+            }
+        });
+        ad.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                cancelar();
+            }
+        });
+        ad.show();
     }
 
     /**
@@ -119,7 +116,6 @@ public class Joc extends AppCompatActivity {
      * Contado que hace la cuenta atras para hacer el reto de girar las cartas.
      */
     public void contador() {
-        timeOff = false;
         new CountDownTimer(tempsSegons * 1000, segons) {
 
             public void onTick(long millisUntilFinished) {
@@ -128,9 +124,9 @@ public class Joc extends AppCompatActivity {
             }
 
             public void onFinish() {
-                 timeOff = true;
+
                 ((TextView) findViewById(R.id.contador)).setText("SE ACABO!");
-                acabarPartida(timeOff);
+                acabarPartida();
             }
         }.start();
     }
