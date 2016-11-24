@@ -3,6 +3,7 @@ package com.example.eric.memory.controllers;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +32,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+        if (v.getId() == R.id.btnEmpezar) {
             Intent intent = new Intent(this, Joc.class);
+            RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup);
+            boolean salir = false;
+
+            switch (rg.getCheckedRadioButtonId()) {
+                case R.id.rbFacil: {
+                    intent.putExtra("dificultad", 8);
+                    salir = true;
+                    break;
+                }
+                case R.id.rbMedio: {
+                    intent.putExtra("dificultad", 10);
+                    salir = true;
+                    break;
+                }
+                case R.id.rbDificil: {
+                    intent.putExtra("dificultad", 12);
+                    salir = true;
+                    break;
+                }
+                default: {
+                    Toast.makeText(this, "Marca una dificultat", Toast.LENGTH_SHORT).show();
+
+                    break;
+                }
+            }
             startActivity(intent);
+            if (salir) {
+                Toast.makeText(this, "Muere el Main", Toast.LENGTH_SHORT).show();
+
+                finish();
+            }
+        }
     }
 }
 

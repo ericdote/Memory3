@@ -35,10 +35,10 @@ public class Carta {
         this.estat = estat;
     }
 
-    public void girar(){
+    public void girar() {
         //TODO canviar logicamente el estado de la carta
 
-        switch (estat){
+        switch (estat) {
             case BACK:
                 this.estat = Estat.FRONT;
                 break;
@@ -47,17 +47,20 @@ public class Carta {
                 break;
         }
 
+
     }
 
-    public int getActive(){
+
+    public int getActive() {
         //TODO devuelve la foto a mostrar en la aplicación
         int activeImage = 0;
 
-        switch (estat){
+        switch (estat) {
             case BACK:
                 activeImage = this.backImage;
                 break;
-            case FRONT: case FIXED:
+            case FRONT:
+            case FIXED:
                 activeImage = this.frontImage;
                 break;
         }

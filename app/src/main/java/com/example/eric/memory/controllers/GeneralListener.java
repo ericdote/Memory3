@@ -14,13 +14,13 @@ import java.util.ArrayList;
  * Created by Eric on 23/11/2016.
  */
 
-public class GeneralListener implements AdapterView.OnItemClickListener, Runnable{
+public class GeneralListener implements AdapterView.OnItemClickListener, Runnable {
 
     private Joc tauler;
-    private Carta cartaOnClick;
+    private Carta carta;
     private boolean listenerActive = true;
     private ArrayList<Carta> listaCartasFront;
-    private int cont = 0;
+    private boolean comprovar;
 
     public GeneralListener(Joc tauler) {
         this.tauler = tauler;
@@ -31,25 +31,28 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
         //Solo procesamos clicks si el listener es activo
         Partida partida = tauler.getPartida();
 
-        if(listenerActive) {
+        if (listenerActive) {
             //view.setVisibility(View.INVISIBLE);
 
-            cartaOnClick = tauler.getPartida().getLlistaCartes().get(position);
-            cartaOnClick.girar();
+            carta = tauler.getPartida().getLlistaCartes().get(position);
+            carta.girar();
 
             tauler.refrescarTablero();
-            int cont=0;
+
             listaCartasFront = partida.mostrarCartasFront();
 
-            if(listaCartasFront.size()==2 && listaCartasFront.get(0).getFrontImage() != listaCartasFront.get(1).getFrontImage()) {
+            if (listaCartasFront.size() == 2 && listaCartasFront.get(0).getFrontImage() != listaCartasFront.get(1).getFrontImage()) {
                 this.listenerActive = false;
 
                 Handler delay = new Handler();
                 delay.postDelayed(this, 2000);
 
-            }else if(listaCartasFront.size()==2){
+            } else if (listaCartasFront.size() == 2) {
                 listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
                 listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
+                if(comprobarFin() && (listaCartasFront.size() == partida.getNumeroCartes())){
+                    tauler.acabarPartida(comprovar);
+                }
             }
         }
     }
@@ -63,13 +66,16 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     }
 
 
-    public boolean comprobarFin(){
-        boolean comprovar = true;
+   public boolean comprobarFin() {
+        comprovar = true;
         for (Carta carta : listaCartasFront) {
-            if(carta.getEstat() != Carta.Estat.FIXED){
-                comprovar = false;
+            if (carta.getEstat() != Carta.Estat.FIXED) {
                 Toast.makeText(tauler, "MM", Toast.LENGTH_SHORT).show();
+                comprovar = false;
                 break;
+            } else {
+                Toast.makeText(tauler, "BB", Toast.LENGTH_SHORT).show();
+                comprovar = true;
             }
         }
         return comprovar;
