@@ -1,12 +1,15 @@
 package com.example.eric.memory.controllers;
 
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.eric.memory.R;
 import com.example.eric.memory.model.Partida;
@@ -76,27 +79,47 @@ public class Joc extends AppCompatActivity {
     }
 
 
-    public void acabarPartida(boolean finish){
-        Intent intent = new Intent(this, MainActivity.class);
-        if (finish) {
-            Toast.makeText(this, "Muere", Toast.LENGTH_SHORT).show();
-            startActivity(intent);
-            finish();
-        }
+    public void acabarPartida() {
+        AlertDialog.Builder ad = new AlertDialog.Builder(this);
+        ad.setTitle("Se acabo el tiempo!");
+        ad.setMessage("¿ Quieres volver a probar ?");
+        ad.setCancelable(false);
+        ad.setPositiveButton("Volver al menu", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                aceptar();
+            }
+        });
+        ad.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                cancelar();
+            }
+        });
+        ad.show();
     }
 
-    public void contador(){
-        new CountDownTimer(tempsSegons*1000, segons) {
+    public void aceptar() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void cancelar() {
+        finish();
+    }
+
+
+    public void contador() {
+        new CountDownTimer(tempsSegons * 1000, segons) {
 
             public void onTick(long millisUntilFinished) {
 
-                ((TextView) findViewById(R.id.contador)).setText("seconds remaining: " + (millisUntilFinished / segons));
+                ((TextView) findViewById(R.id.contador)).setText("Tiempo Restante: " + (millisUntilFinished / segons));
             }
 
             public void onFinish() {
-                boolean finish = true;
-                ((TextView) findViewById(R.id.contador)).setText("done!");
-                acabarPartida(finish);
+
+                ((TextView) findViewById(R.id.contador)).setText("SE ACABO!");
+                acabarPartida();
             }
         }.start();
     }

@@ -51,7 +51,7 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
                 listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
                 listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
                 if(comprobarFin() && (listaCartasFront.size() == partida.getNumeroCartes())){
-                    tauler.acabarPartida(comprovar);
+                    tauler.acabarPartida();
                 }
             }
         }

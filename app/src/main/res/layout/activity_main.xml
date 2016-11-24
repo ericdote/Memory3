@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="top|center"
     android:orientation="vertical">
 
 
-    <Button
-        android:text="@string/comenzar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnEmpezar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="100dp" />
-
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/radioGroup">
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="54dp">
         <RadioButton
             android:text="@string/facil"
             android:layout_width="match_parent"
@@ -48,4 +40,16 @@
             android:layout_alignStart="@+id/rbMedio"
             android:id="@+id/rbDificil" />
     </RadioGroup>
-</RelativeLayout>
+
+    <Button
+        android:text="@string/comenzar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnEmpezar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="100dp"
+        android:layout_row="7"
+        android:layout_column="0" />
+
+</GridLayout>
