@@ -20,7 +20,7 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     private Carta carta;
     private boolean listenerActive = true;
     private ArrayList<Carta> listaCartasFront;
-    private boolean comprovar;
+    private Partida partida;
 
     public GeneralListener(Joc tauler) {
         this.tauler = tauler;
@@ -45,11 +45,14 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
             } else if (listaCartasFront.size() == 2) {
                 listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
                 listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
-                if ((listaCartasFront.size()+1) == partida.getNumeroCartes()) { //MIRAR AQUI!!!!!!!!!!!!!!!!!!
-                    tauler.acabarPartida();
-                }
+                Joc.CONT++;
             }
         }
+        if(tauler.comprobarFin()){
+            tauler.acabarPartida(false);
+            Joc.CONT = 0;
+        }
+
     }
 
 
@@ -60,21 +63,4 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
         tauler.refrescarTablero();
         listenerActive = true;
     }
-
-/*
-    public boolean comprobarFin() {
-        comprovar = true;
-        for (Carta carta : listaCartasFront) {
-            if (carta.getEstat() != Carta.Estat.FIXED) {
-                Toast.makeText(tauler, "MM", Toast.LENGTH_SHORT).show();
-                comprovar = false;
-                break;
-            } else {
-                Toast.makeText(tauler, "BB", Toast.LENGTH_SHORT).show();
-                comprovar = true;
-            }
-        }
-        return comprovar;
-    }*/
-
 }

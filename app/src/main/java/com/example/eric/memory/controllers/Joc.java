@@ -9,14 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.eric.memory.R;
+import com.example.eric.memory.model.Carta;
 import com.example.eric.memory.model.Partida;
 
 public class Joc extends AppCompatActivity {
 
     private GridView gv;
+    private Carta carta;
     private Partida partida;
     private ImageAdapter adapter;
     private android.os.CountDownTimer CountDownTimer; //Para contar hacia atras
@@ -25,6 +28,7 @@ public class Joc extends AppCompatActivity {
     private int tempsSegons = 60; //Tiempo que tendra la partida
     private final GeneralListener listener = new GeneralListener(this);
     private boolean timeOff=false; //Para determinaar cuando acaba el tiempo
+    public static int CONT;
 
 
     public GridView getGv() {
@@ -73,21 +77,31 @@ public class Joc extends AppCompatActivity {
         gv.refreshDrawableState();
     }
 
+    public boolean comprobarFin() {
+        boolean comprovar = false;
+            if(CONT == partida.getNumeroCartes()/2){
+                comprovar = true;
+            } else {
+                comprovar =  false;
+            }
+        return comprovar;
+    }
+
     /**
      * Metodo que terminada la partida, en cas de guanyar termina o en cas de acabar tot el temps
      * En ambos casos treura un alertDialog preguntant si volen tornar a jugar o no.
      */
-    public void acabarPartida() {
+    public void acabarPartida(boolean tiempoAcabado) {
         AlertDialog.Builder ad = new AlertDialog.Builder(this);
-        ad.setTitle("Se acabo el tiempo!");
-        ad.setMessage("¿ Quieres volver a probar ?");
+        ad.setTitle((tiempoAcabado)?getString(R.string.timeOut):getString(R.string.win));
+        ad.setMessage(R.string.tryAgain);
         ad.setCancelable(false);
-        ad.setPositiveButton("Volver al menu", new DialogInterface.OnClickListener() {
+        ad.setPositiveButton(R.string.menu, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
                 aceptar();
             }
         });
-        ad.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
+        ad.setNegativeButton(R.string.exit, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
                 cancelar();
             }
@@ -126,7 +140,7 @@ public class Joc extends AppCompatActivity {
             public void onFinish() {
 
                 ((TextView) findViewById(R.id.contador)).setText("SE ACABO!");
-                acabarPartida();
+                acabarPartida(true);
             }
         }.start();
     }

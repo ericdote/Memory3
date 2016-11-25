@@ -4,4 +4,9 @@
     <string name="facil">Facil</string>
     <string name="medio">Medio</string>
     <string name="dificil">Dificil</string>
+    <string name="timeOut">Se ha acabado el tiempo</string>
+    <string name="win">Has ganado</string>
+    <string name="tryAgain">¿ Quieres volver a probar ?</string>
+    <string name="menu">Volver al menu</string>
+    <string name="exit">Salir</string>
 </resources>
