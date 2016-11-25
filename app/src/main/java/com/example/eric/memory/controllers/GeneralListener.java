@@ -3,8 +3,6 @@ package com.example.eric.memory.controllers;
 import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
-
 import com.example.eric.memory.model.Carta;
 import com.example.eric.memory.model.Partida;
 
@@ -20,7 +18,6 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     private Carta carta;
     private boolean listenerActive = true;
     private ArrayList<Carta> listaCartasFront;
-    private Partida partida;
 
     public GeneralListener(Joc tauler) {
         this.tauler = tauler;
@@ -45,11 +42,15 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
             } else if (listaCartasFront.size() == 2) {
                 listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
                 listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
+                //Cada vez que hay 2 cartas encontradas como pareja aumenta el contador
                 Joc.CONT++;
             }
         }
+        //Comprueba si la partida acaba
         if(tauler.comprobarFin()){
+            //Manda false a acabar partida para sacar el mensaje correspondiente al finalizar
             tauler.acabarPartida(false);
+            //Reinicializa el contador a 0 para el proximo juego (en caso de haberlo)
             Joc.CONT = 0;
         }
 

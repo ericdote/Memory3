@@ -17,7 +17,6 @@ public class ImageAdapter extends BaseAdapter {
 
     private Context mContext;
     private Partida partida;
-    //private int numColumnas, anchoColumna, alturaColumna;
 
     public ImageAdapter(Context c, Partida p) {
 
@@ -39,10 +38,9 @@ public class ImageAdapter extends BaseAdapter {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
-        if (convertView == null) {  // if it's not recycled, initialize some attributes
+        if (convertView == null) {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(280,320));
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);

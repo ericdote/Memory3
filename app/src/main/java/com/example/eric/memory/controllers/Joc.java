@@ -9,9 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 import com.example.eric.memory.R;
 import com.example.eric.memory.model.Carta;
 import com.example.eric.memory.model.Partida;
@@ -23,11 +20,9 @@ public class Joc extends AppCompatActivity {
     private Partida partida;
     private ImageAdapter adapter;
     private android.os.CountDownTimer CountDownTimer; //Para contar hacia atras
-    private int tempsRestant;
     private final int segons = 1000; //Variable final que determina un segundo en millis
     private int tempsSegons = 60; //Tiempo que tendra la partida
     private final GeneralListener listener = new GeneralListener(this);
-    private boolean timeOff=false; //Para determinaar cuando acaba el tiempo
     public static int CONT;
 
 
@@ -47,10 +42,7 @@ public class Joc extends AppCompatActivity {
         this.partida = partida;
     }
 
-    /**
-     *
-     * @param savedInstanceState
-     */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -77,6 +69,10 @@ public class Joc extends AppCompatActivity {
         gv.refreshDrawableState();
     }
 
+    /**
+     * Comprueba si el juego ha acabado con el contador
+     * @return
+     */
     public boolean comprobarFin() {
         boolean comprovar = false;
             if(CONT == partida.getNumeroCartes()/2){
@@ -90,6 +86,7 @@ public class Joc extends AppCompatActivity {
     /**
      * Metodo que terminada la partida, en cas de guanyar termina o en cas de acabar tot el temps
      * En ambos casos treura un alertDialog preguntant si volen tornar a jugar o no.
+     * Variara el mensaje en funcion de si es de tiempo o por ganar
      */
     public void acabarPartida(boolean tiempoAcabado) {
         AlertDialog.Builder ad = new AlertDialog.Builder(this);
