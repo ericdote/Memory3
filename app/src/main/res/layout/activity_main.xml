@@ -51,17 +51,6 @@
             android:layout_alignParentTop="true"
             android:checked="true"
             android:text="@string/facil" />
-
-
-        <RadioButton
-            android:id="@+id/rbDificil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/rbMedio"
-            android:layout_below="@+id/rbMedio"
-            android:text="@string/dificil" />
-
-
         <RadioButton
             android:id="@+id/rbMedio"
             android:layout_width="match_parent"
@@ -69,6 +58,13 @@
             android:layout_alignStart="@+id/rbFacil"
             android:layout_below="@+id/rbFacil"
             android:text="@string/medio" />
+        <RadioButton
+            android:id="@+id/rbDificil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/rbMedio"
+            android:layout_below="@+id/rbMedio"
+            android:text="@string/dificil" />
 
     </RadioGroup>
 

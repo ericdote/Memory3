@@ -45,10 +45,7 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
             } else if (listaCartasFront.size() == 2) {
                 listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
                 listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
-                listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
-                listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
-                if (comprobarFin() && (listaCartasFront.size() == partida.getNumeroCartes())) {
-                    tauler.acabarPartida();
+                if ((listaCartasFront.size()+1) == partida.getNumeroCartes()) { //MIRAR AQUI!!!!!!!!!!!!!!!!!!
                     tauler.acabarPartida();
                 }
             }
@@ -64,7 +61,7 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
         listenerActive = true;
     }
 
-
+/*
     public boolean comprobarFin() {
         comprovar = true;
         for (Carta carta : listaCartasFront) {
@@ -78,6 +75,6 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
             }
         }
         return comprovar;
-    }
+    }*/
 
 }
