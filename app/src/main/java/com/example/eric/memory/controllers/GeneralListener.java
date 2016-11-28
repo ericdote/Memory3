@@ -27,9 +27,9 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
         Partida partida = tauler.getPartida();
+        carta = tauler.getPartida().getLlistaCartes().get(position);
 
-        if (listenerActive) {
-            carta = tauler.getPartida().getLlistaCartes().get(position);
+        if (listenerActive && carta.getEstat() == Carta.Estat.BACK) {
             carta.girar();
             tauler.refrescarTablero();
             listaCartasFront = partida.mostrarCartasFront();

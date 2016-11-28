@@ -19,7 +19,7 @@ public class Joc extends AppCompatActivity {
     private Carta carta;
     private Partida partida;
     private ImageAdapter adapter;
-    private android.os.CountDownTimer CountDownTimer; //Para contar hacia atras
+    private CountDownTimer cont; //Para contar hacia atras
     private final int segons = 1000; //Variable final que determina un segundo en millis
     private int tempsSegons = 60; //Tiempo que tendra la partida
     private final GeneralListener listener = new GeneralListener(this);
@@ -77,6 +77,7 @@ public class Joc extends AppCompatActivity {
         boolean comprovar = false;
             if(CONT == partida.getNumeroCartes()/2){
                 comprovar = true;
+                cont.cancel();
             } else {
                 comprovar =  false;
             }
@@ -127,7 +128,7 @@ public class Joc extends AppCompatActivity {
      * Contado que hace la cuenta atras para hacer el reto de girar las cartas.
      */
     public void contador() {
-        new CountDownTimer(tempsSegons * 1000, segons) {
+        cont = new CountDownTimer(tempsSegons * 1000, segons) {
 
             public void onTick(long millisUntilFinished) {
 
